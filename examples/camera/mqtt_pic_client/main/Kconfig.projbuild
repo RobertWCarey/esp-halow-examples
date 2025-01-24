@@ -1,0 +1,37 @@
+menu "Example Configuration"
+
+    config BROKER_URL
+        string "Broker URL"
+        default "mqtt://mqtt.eclipseprojects.io"
+        help
+            URL of the broker to connect to
+
+    config BROKER_USERNAME
+        string "Broker Username"
+        default "admin"
+        help
+            Username for MQTT broker authentication
+
+    config BROKER_PASSWORD
+        string "Broker Password"
+        default "admin"
+        help
+            Password for MQTT broker authentication
+
+    choice IMAGE_FORMAT
+            prompt "image format"
+            default IMAGE_JPEG_FORMAT
+            help
+                Different image formats mean different amounts of data and image quality.
+            config IMAGE_JPEG_FORMAT
+                bool "JPEG"
+                help
+                    The image data in JPEG format is compressed data, so it is more suitable for network transmission.
+                    In particular, use this format when a camera that can output jpeg format is used.
+            config IMAGE_BMP_FORMAT
+                bool "BMP"
+                help
+                    The image data in BMP format is uncompressed data.
+                    Data in this format will take up a lot of memory, but it can bring lossless image quality.
+    endchoice
+endmenu

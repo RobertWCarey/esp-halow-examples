@@ -1,0 +1,18 @@
+---
+Language: Cpp
+BasedOnStyle: LLVM
+ColumnLimit: 100
+IndentWidth: 4
+DerivePointerAlignment: false
+PointerAlignment: Right
+BreakBeforeBraces: Allman
+AlignAfterOpenBracket: Align
+AlignEscapedNewlines: Left
+AllowShortBlocksOnASingleLine: Never
+AllowShortFunctionsOnASingleLine: None
+AllowShortLoopsOnASingleLine: false
+BreakBeforeBinaryOperators: NonAssignment
+SpaceAfterCStyleCast: false
+SpacesBeforeTrailingComments: 1
+AlignTrailingComments: true
+IndentExternBlock: NoIndent

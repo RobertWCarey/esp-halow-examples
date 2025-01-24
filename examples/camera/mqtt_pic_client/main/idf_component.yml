@@ -1,0 +1,10 @@
+dependencies:
+  idf: ">=4.4.1"
+  camera:
+    version: "*"
+    override_path: "../../../common_components/camera"
+  esp32-camera:
+    version: ">=2.0.3"
+  halow:
+    version: ">=0.1.0"
+    override_path: "../../../../components/halow"

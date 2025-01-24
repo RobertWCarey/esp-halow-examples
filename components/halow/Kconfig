@@ -1,0 +1,60 @@
+menu "Wi-Fi HaLow Connection Manager"
+
+    config HALOW_COUNTRY_CODE
+        string "Country code to use for Wi-Fi HaLow"
+        default "??"
+
+    config HALOW_SSID
+        string "SSID for the Wi-Fi HaLow station"
+        default "MorseMicro"
+
+    config HALOW_PASSWORD
+        string "Password for the Wi-Fi HaLow station"
+        default "12345678"
+
+    config ENABLE_DHCP
+        bool "Enable DHCP"
+        default y
+        help
+          If enabled, the station will use DHCP. If disabled,
+          the static IP parameters in the submenu below become visible.
+
+    menu "Static IP Configuration"
+        depends on !ENABLE_DHCP
+
+        config STATIC_LOCAL_IP
+            string "Static Local IP"
+            default "192.168.1.2"
+            help
+              The IP address to use when DHCP is not enabled.
+
+        config STATIC_GATEWAY
+            string "Static Gateway"
+            default "192.168.1.1"
+            help
+              The gateway address to use when DHCP is not enabled.
+
+        config STATIC_NETMASK
+            string "Static Netmask"
+            default "255.255.255.0"
+            help
+              The netmask to use when DHCP is not enabled.
+
+    endmenu
+
+    config ENABLE_AUTOCONFIG
+        bool "Enable IPv6 Autoconfig"
+        default n
+        help
+          If enabled, IPv6 addresses are automatically configured.
+          If disabled, a static IPv6 address can be specified.
+
+    config STATIC_LOCAL_IP6
+        string "Static Local IPv6"
+        default "FE80::2"
+        depends on !ENABLE_AUTOCONFIG
+        help
+          The static IPv6 address to use when IPv6 autoconfiguration is disabled.
+
+endmenu
+
