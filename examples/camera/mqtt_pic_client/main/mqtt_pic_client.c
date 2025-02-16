@@ -33,7 +33,7 @@ static void log_error_if_nonzero(const char *message, int error_code)
 }
 
 // Adjust topic name as needed
-#define CAMERA_TOPIC "camera/image"
+#define CAMERA_TOPIC CONFIG_CAMERA_IMAGE_TOPIC
 
 // Adjust publish interval (in milliseconds)
 #define PUBLISH_INTERVAL_MS 5000
@@ -93,7 +93,8 @@ static void camera_publish_task(void *pvParameters)
             // NOTE: Large images can cause issues depending on your MQTT broker limits.
             int msg_id = esp_mqtt_client_publish(client, CAMERA_TOPIC, (const char *)image_data_buf,
                                                  image_data_buf_len, 0, 0);
-            ESP_LOGI(TAG, "Published camera frame, msg_id=%d, size=%u bytes", msg_id, frame->len);
+            ESP_LOGI(TAG, "Published camera frame, topic=%s, msg_id=%d, size=%u bytes",
+                     CAMERA_TOPIC, msg_id, frame->len);
 
 #if CONFIG_IMAGE_JPEG_FORMAT
             if (frame->format != PIXFORMAT_JPEG)

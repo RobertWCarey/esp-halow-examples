@@ -18,6 +18,12 @@ menu "Example Configuration"
         help
             Password for MQTT broker authentication
 
+    config CAMERA_IMAGE_TOPIC
+        string "Topic to publish image"
+        default "camera/image"
+        help
+            Topic to publish the image captured by the camera.
+
     choice IMAGE_FORMAT
             prompt "image format"
             default IMAGE_JPEG_FORMAT
