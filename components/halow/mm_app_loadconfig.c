@@ -15,10 +15,10 @@
  */
 
 #include "mm_app_loadconfig.h"
+#include "mm_app_regdb.h"
 #include "mmipal.h"
 #include "mmosal.h"
 #include "mmwlan.h"
-#include "mmwlan_regdb.def"
 
 #ifndef COUNTRY_CODE
 #define COUNTRY_CODE CONFIG_HALOW_COUNTRY_CODE

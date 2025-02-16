@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 set(src "mm_app_common.c"
+        "mm_app_regdb.c"
         "mm_app_loadconfig.c")
 set(inc ".")
 

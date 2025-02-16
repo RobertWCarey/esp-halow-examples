@@ -3,6 +3,8 @@
 **Note:** This repository is a work in progress. There is no guarantee that the structure or content
 won’t undergo significant changes until the 1.0.0 release.
 
+> Tested using [MM-IoT-SDK release 2.7.2 for ESP32](https://github.com/MorseMicro/mm-iot-esp32/tree/2.7.2)
+
 ---
 
 This repository contains examples demonstrating the use of ESP32 series chips alongside Morse Micro
