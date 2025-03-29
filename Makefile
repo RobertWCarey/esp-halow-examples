@@ -13,3 +13,8 @@ format:
 	@printf "	%s\n" $(SRC_FILES)
 	@clang-format -i $(SRC_FILES)
 
+.PHONY: format_check
+format_check:
+	@echo "Formatting the following files:"
+	@printf "	%s\n" $(SRC_FILES)
+	@clang-format --dry-run -Werror -i $(SRC_FILES)

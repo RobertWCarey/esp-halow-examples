@@ -1,0 +1,18 @@
+name: Formatting check
+on: [pull_request, workflow_dispatch]
+
+jobs:
+  formatting-check:
+    name: Formatting Check
+    runs-on: ubuntu-latest
+    container: xianpengshen/clang-tools:18
+    steps:
+    - name: Install Dependencies
+      run: |
+        apt-get update
+        apt-get install -y curl make
+        curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+        apt-get install -y nodejs
+        node --version  # Verify node version ≥16
+    - uses: actions/checkout@v4
+    - run: make format_check

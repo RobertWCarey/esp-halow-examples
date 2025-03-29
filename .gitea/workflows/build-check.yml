@@ -1,0 +1,37 @@
+name: Build Checks
+on: [pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: espressif/idf:v5.1.1
+    env:
+      MMIOT_ROOT: ${{ gitea.workspace }}/mm-iot-esp32
+    steps:
+    - name: Install Node
+      run: |
+        apt-get update
+        apt-get install -y curl
+        curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+        apt-get install -y nodejs
+        node --version  # Verify node version ≥16
+    - name: checkout-repo
+      uses: actions/checkout@v4
+    - name: checkout-mm-iot-esp32
+      uses: actions/checkout@v4
+      with:
+        repository: MorseMicro/mm-iot-esp32
+        path: mm-iot-esp32
+        ref: '2.7.2'
+    - name: build protocols/icmp_echo
+      run: |
+        . /opt/esp/idf/export.sh
+        idf.py build -C examples/protocols/icmp_echo
+    - name: build camera/http_pic_server
+      run: |
+        . /opt/esp/idf/export.sh
+        idf.py build -C examples/camera/http_pic_server
+    - name: build camera/mqtt_pic_client
+      run: |
+        . /opt/esp/idf/export.sh
+        idf.py build -C examples/camera/mqtt_pic_client
