@@ -1,0 +1,51 @@
+menu "Example Configuration"
+
+    config BROKER_URL
+        string "Broker URL"
+        default "mqtt://mqtt.eclipseprojects.io"
+        help
+            URL of the broker to connect to
+
+    config BROKER_USERNAME
+        string "Broker Username"
+        default "admin"
+        help
+            Username for MQTT broker authentication
+
+    config BROKER_PASSWORD
+        string "Broker Password"
+        default "admin"
+        help
+            Password for MQTT broker authentication
+
+    config UPDATE_INTERVAL_MS
+        int "Update interval (ms)"
+        default 5000
+        range 1000 3600000
+        help
+            Interval in milliseconds between sensor status updates.
+
+    menu "Battery Configuration"
+        config BATTERY_GPIO_PIN
+            int "GPIO pin for battery voltage measurement"
+            default 4
+            range 0 39
+            help
+                GPIO pin connected to the battery voltage divider.
+                Make sure this pin supports ADC functionality.
+
+        config BATTERY_EMPTY_MV
+            int "Empty battery voltage (mV)"
+            default 3300
+            range 2500 3500
+            help
+                Battery voltage in millivolts that corresponds to 0% battery level.
+
+        config BATTERY_FULL_MV
+            int "Full battery voltage (mV)"
+            default 4000
+            range 3600 4500
+            help
+                Battery voltage in millivolts that corresponds to 100% battery level.
+    endmenu
+endmenu

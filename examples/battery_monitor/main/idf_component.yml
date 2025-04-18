@@ -1,0 +1,4 @@
+dependencies:
+  halow:
+    version: ">=0.1.0"
+    override_path: "../../../components/halow"
