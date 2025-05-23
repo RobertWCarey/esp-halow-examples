@@ -1,0 +1,5 @@
+dependencies:
+  halow:
+    version: '>=0.1.0'
+    override_path: ../../../components/halow
+  k0i05/esp_sht4x: ^1.2.5

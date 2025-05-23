@@ -1,0 +1,31 @@
+## MMIOT Specific changes ##
+
+CONFIG_FREERTOS_HZ=1000
+
+# We increase this from its default priority of 1 so that the FreeRTOS timer service will be a
+# higher priority than any of the thread created by MMOSAL (i.e. higher priority than
+# MMOSAL_TASK_PRI_HIGH). See "Timers" section in the Morse Micro Operating System Abstraction Layer
+# (mmosal) API docs.
+CONFIG_FREERTOS_TIMER_TASK_PRIORITY=10
+
+# Currently libmorse.a has only been compiled for ESP32S3
+CONFIG_IDF_TARGET="esp32s3"
+
+CONFIG_MBEDTLS_NIST_KW_C=y
+
+CONFIG_LWIP_NETIF_STATUS_CALLBACK=y
+CONFIG_LWIP_IPV6_AUTOCONFIG=y
+CONFIG_LWIP_IPV6_DHCP6=y
+
+CONFIG_PARTITION_TABLE_SINGLE_APP_LARGE=y
+
+## Changes specific to 3-0062 board ##
+CONFIG_MM_RESET_N=1
+CONFIG_MM_WAKE=2
+CONFIG_MM_BUSY=3
+CONFIG_MM_SPI_SCK=7
+CONFIG_MM_SPI_MOSI=9
+CONFIG_MM_SPI_MISO=8
+CONFIG_MM_SPI_CS=44
+CONFIG_MM_SPI_IRQ=43
+CONFIG_MM_BCF_MF_08651_US=y

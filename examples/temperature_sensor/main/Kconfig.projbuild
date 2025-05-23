@@ -1,0 +1,43 @@
+menu "Example Configuration"
+
+    config BROKER_URL
+        string "Broker URL"
+        default "mqtt://mqtt.eclipseprojects.io"
+        help
+            URL of the broker to connect to
+
+    config BROKER_USERNAME
+        string "Broker Username"
+        default "admin"
+        help
+            Username for MQTT broker authentication
+
+    config BROKER_PASSWORD
+        string "Broker Password"
+        default "admin"
+        help
+            Password for MQTT broker authentication
+
+    config UPDATE_INTERVAL_MS
+        int "Update interval (ms)"
+        default 5000
+        range 1000 3600000
+        help
+            Interval in milliseconds between sensor status updates.
+
+    menu "Sensor Configuration"
+        config I2C_MASTER_SCL_IO
+            int "SCL GPIO for the I2C master"
+            default 6
+            range 0 39
+            help
+                GPIO number for the SCL pin of the I2C master.
+
+        config I2C_MASTER_SDA_IO
+            int "SDA GPIO for the I2C master"
+            default 5
+            range 0 39
+            help
+                GPIO number for the SDA pin of the I2C master.
+    endmenu
+endmenu
