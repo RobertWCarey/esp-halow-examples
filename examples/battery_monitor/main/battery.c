@@ -11,6 +11,7 @@
 #include "esp_adc/adc_cali_scheme.h"
 #include "esp_adc/adc_oneshot.h"
 #include "esp_err.h"
+#include "esp_idf_version.h"
 #include "esp_log.h"
 #include "hal/adc_types.h"
 #include "soc/adc_channel.h"
@@ -169,6 +170,14 @@ static bool adc_calibration_init(adc_unit_t unit, adc_channel_t channel, adc_att
     return calibrated;
 }
 
+/* From ESP-IDF version 5.1.3 and on `ADC_ATTEN_DB_11` was deprecated in favour of
+ * `ADC_ATTEN_DB_12`. According to the ESP-IDF docs they behave the same. */
+#if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 1, 3)
+#define BATTERY_ADC_ATTEN ADC_ATTEN_DB_12
+#else
+#define BATTERY_ADC_ATTEN ADC_ATTEN_DB_11
+#endif
+
 void battery_init(void)
 {
     /* This shall only every be initialised once. */
@@ -181,12 +190,12 @@ void battery_init(void)
     ESP_ERROR_CHECK(adc_oneshot_new_unit(&init_config, &state.adc_handle));
 
     adc_oneshot_chan_cfg_t config = {
-        .atten = ADC_ATTEN_DB_12,
+        .atten = BATTERY_ADC_ATTEN,
         .bitwidth = ADC_BITWIDTH_DEFAULT,
     };
     ESP_ERROR_CHECK(adc_oneshot_config_channel(state.adc_handle, BATTERY_ADC_CHANNEL, &config));
 
-    bool ok = adc_calibration_init(BATTERY_ADC_UNIT, BATTERY_ADC_CHANNEL, ADC_ATTEN_DB_12,
+    bool ok = adc_calibration_init(BATTERY_ADC_UNIT, BATTERY_ADC_CHANNEL, BATTERY_ADC_ATTEN,
                                    &state.adc_cali_handle);
     if (!ok)
     {

@@ -35,3 +35,7 @@ jobs:
       run: |
         . /opt/esp/idf/export.sh
         idf.py build -C examples/camera/mqtt_pic_client
+    - name: build battery_monitor
+      run: |
+        . /opt/esp/idf/export.sh
+        idf.py build -C examples/battery_monitor
