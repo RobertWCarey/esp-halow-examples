@@ -22,7 +22,7 @@ jobs:
       with:
         repository: MorseMicro/mm-iot-esp32
         path: mm-iot-esp32
-        ref: '2.7.2'
+        ref: '2.9.7'
     - name: build protocols/icmp_echo
       run: |
         . /opt/esp/idf/export.sh
